@@ -8,6 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class message_interface extends AppCompatActivity {
 
@@ -15,6 +20,9 @@ public class message_interface extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_interface);
+        final EditText outgoing_message;
+        TextView sent_text, incoming_message;
+        Button send_message;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -24,6 +32,16 @@ public class message_interface extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+
+        send_message =(Button) findViewById(R.id.send_button);
+        outgoing_message = (EditText) findViewById(R.id.outgoing_text);
+        send_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendText(outgoing_message.getText().toString());
             }
         });
     }
@@ -49,4 +67,9 @@ public class message_interface extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void sendText(String message){
+        
+    }
+
 }
