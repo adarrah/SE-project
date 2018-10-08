@@ -18,36 +18,29 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 public class message_interface extends AppCompatActivity {
-
+    static TextView sent_text, incoming_text;
+    static EditText phone_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_interface);
         final Context ctx = this;
         EditText outgoing_message;
-        final TextView sent_text, incoming_message;
         Button send_message;
 
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-
+        phone_text = (EditText) findViewById(R.id.phoneText);
         sent_text = (TextView) findViewById(R.id.sent_text);
         send_message =(Button) findViewById(R.id.send_button);
         outgoing_message = (EditText) findViewById(R.id.outgoing_text);
+        incoming_text = (TextView) findViewById(R.id.incoming_text);
+
         final String outgoing_message_string = outgoing_message.getText().toString();
+        final String phone_number_string = phone_text.getText().toString();
+
         send_message.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sendText(outgoing_message_string)){
-                    sent_text.setText(outgoing_message_string);
+                if(message_backend.sendMessage(phone_number_string, outgoing_message_string)){
+                    setSentText(outgoing_message_string);
                 }
                 else{
                     Toast.makeText(ctx, "Message Failed to send",Toast.LENGTH_SHORT);
@@ -57,33 +50,21 @@ public class message_interface extends AppCompatActivity {
         });
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_message_interface, menu);
-        return true;
+    public static void pushReceiedMessageToScreen(String message, String phoneNo){
+        setPhoneText(phoneNo);
+        setIncomingText(message);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private static void setSentText(String textToDisplay){
+        sent_text.setText(textToDisplay);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+    private static void setIncomingText(String textToDisplay){
+        incoming_text.setText(textToDisplay);
+    }
 
-        return super.onOptionsItemSelected(item);
-    }*/
-
-    public static boolean sendText(String message){
-        if(message.isEmpty())
-            return false;
-        else
-            return true;
+    private static void setPhoneText(String textToDisplay){
+        phone_text.setText(textToDisplay);
     }
 
 }
