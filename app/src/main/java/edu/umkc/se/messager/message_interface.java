@@ -19,13 +19,12 @@ import org.w3c.dom.Text;
 
 public class message_interface extends AppCompatActivity {
     static TextView sent_text, incoming_text;
-    static EditText phone_text;
+    static EditText phone_text, outgoing_message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_interface);
         final Context ctx = this;
-        EditText outgoing_message;
         Button send_message;
 
         phone_text = (EditText) findViewById(R.id.phoneText);
@@ -34,18 +33,19 @@ public class message_interface extends AppCompatActivity {
         outgoing_message = (EditText) findViewById(R.id.outgoing_text);
         incoming_text = (TextView) findViewById(R.id.incoming_text);
 
-        final String outgoing_message_string = outgoing_message.getText().toString();
-        final String phone_number_string = phone_text.getText().toString();
+
 
         send_message.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                String outgoing_message_string = outgoing_message.getText().toString();
+                String phone_number_string = phone_text.getText().toString();
                 if(message_backend.sendMessage(phone_number_string, outgoing_message_string)){
-                    setSentText(outgoing_message_string);
+                    Toast.makeText(ctx, "WE DID IT REDDIT!!!",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(ctx, "Message Failed to send",Toast.LENGTH_SHORT);
+                    Toast.makeText(ctx, "Message Failed to send",Toast.LENGTH_SHORT).show();
                 }
-
+                setSentText(outgoing_message_string);
             }
         });
     }
