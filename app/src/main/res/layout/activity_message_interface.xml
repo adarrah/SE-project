@@ -10,17 +10,18 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="383dp"
-        android:layout_height="36dp"
+        android:layout_width="382dp"
+        android:layout_height="57dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/outgoing_text"
-            android:layout_width="280dp"
-            android:layout_height="36dp"
+            android:layout_width="282dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="4dp"
             android:hint="@string/enter_text_hint"
-            android:inputType="text"
+            android:inputType="textAutoCorrect"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -28,7 +29,7 @@
             android:id="@+id/send_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="2dp"
             android:text="@string/button_send"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,24 +37,9 @@
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-    <ScrollView
-        android:layout_width="377dp"
-        android:layout_height="475dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-        </LinearLayout>
-    </ScrollView>
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="379dp"
-        android:layout_height="469dp"
+        android:layout_height="498dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -62,17 +48,21 @@
 
         <TextView
             android:id="@+id/incoming_text"
-            android:layout_width="121dp"
-            android:layout_height="27dp"
-            android:layout_marginBottom="96dp"
+            android:layout_width="183dp"
+            android:layout_height="309dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="bottom"
+            android:textAlignment="textStart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/sent_text"
-            android:layout_width="104dp"
-            android:layout_height="25dp"
-            android:layout_marginBottom="48dp"
+            android:layout_width="187dp"
+            android:layout_height="352dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="bottom"
+            android:textAlignment="textEnd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -83,6 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="48dp"
         android:ems="10"
         android:hint="@string/phone_no_hint"
